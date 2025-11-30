@@ -151,7 +151,7 @@ The generated Word document includes:
 ### "Failed to fetch folder contents" Error
 - Check if the URL is correct and accessible
 - Ensure your internet connection is stable
-- For private repos, verify your token has correct permissions
+- For private repos, make them public
 
 ### Files Not Appearing in Document
 - Verify the file extensions match your `target_extensions` list
