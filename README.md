@@ -1,6 +1,20 @@
 # GitHub to Word Document Converter
 
-A Python tool that automatically downloads code files from any GitHub repository folder and compiles them into a professionally formatted Word document.
+A Python tool that automatically downloads code files from any GitHub repository folder and compiles them into a **professionally formatted Word document** with modern styling, code blocks with background shading, and a beautiful title page.
+
+![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
+![License](https://img.shields.io/badge/License-Educational-green.svg)
+
+## ✨ Key Features
+
+- 📄 **Professional Title Page** - Auto-generated with date and source URL
+- 🎨 **Styled Code Blocks** - Consolas font with light gray background shading
+- 📁 **Recursive Fetching** - Automatically processes all subdirectories
+- 🔢 **Natural Sorting** - Files sorted correctly (1, 2, 10 not 1, 10, 2)
+- 🔒 **Private Repo Support** - Works with GitHub Personal Access Tokens
+- 🌐 **Multi-Language** - Supports any file extension (Python, Java, C++, JS, etc.)
+
+---
 
 ## 🎓 Benefits for University Students
 
