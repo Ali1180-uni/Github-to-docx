@@ -1,9 +1,16 @@
 # GitHub to Word Document Converter
 
-A Python tool that automatically downloads code files from any GitHub repository folder and compiles them into a **professionally formatted Word document** with modern styling, code blocks with background shading, and a beautiful title page.
+A Python tool that automatically downloads code files from any GitHub repository folder and compiles them into **professionally formatted Word documents** with modern styling, code blocks with background shading, and beautiful title pages.
 
 ![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
 ![License](https://img.shields.io/badge/License-Educational-green.svg)
+
+## 📦 Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| **WordMaker.py** | Compiles all code files into a **single** Word document |
+| **WordMakerByFolder.py** | Creates **separate** Word documents for each folder (named after the folder) |
 
 ## ✨ Key Features
 
@@ -13,6 +20,7 @@ A Python tool that automatically downloads code files from any GitHub repository
 - 🔢 **Natural Sorting** - Files sorted correctly (1, 2, 10 not 1, 10, 2)
 - 🔒 **Private Repo Support** - Works with GitHub Personal Access Tokens
 - 🌐 **Multi-Language** - Supports any file extension (Python, Java, C++, JS, etc.)
+- 📂 **Folder-wise Export** - Generate separate documents per folder (WordMakerByFolder.py)
 
 ---
 
@@ -48,6 +56,22 @@ A Python tool that automatically downloads code files from any GitHub repository
 
 ### Install Required Libraries
 
+#### Option 1: Install in Virtual Environment (Recommended)
+```bash
+# Create virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+# Windows:
+.venv\Scripts\activate
+# macOS/Linux:
+source .venv/bin/activate
+
+# Install dependencies
+pip install python-docx requests
+```
+
+#### Option 2: Install Globally
 ```bash
 pip install python-docx requests
 ```
@@ -56,7 +80,9 @@ pip install python-docx requests
 
 ## 🚀 Quick Start Guide
 
-### Step 1: Configure the Script
+### Using WordMaker.py (Single Document Output)
+
+#### Step 1: Configure the Script
 
 Open `WordMaker.py` and modify the configuration section at the bottom:
 
@@ -68,42 +94,109 @@ TARGET_URL = "https://github.com/username/repository/tree/main/folder-name"
 TOKEN = None  # or "ghp_your_token_here"
 ```
 
-### Step 2: Run the Script
+#### Step 2: Run the Script
 
 ```bash
 python WordMaker.py
 ```
 
-### Step 3: Find Your Document
+#### Step 3: Find Your Document
 
-The Word document will be saved in the same directory as the script with the name `Subfolder_Code_Report.docx`.
+The Word document will be saved in the same directory as the script.
+
+---
+
+### Using WordMakerByFolder.py (Separate Documents per Folder)
+
+This script creates **individual Word documents for each folder**, automatically named after the GitHub folder name.
+
+#### Step 1: Configure the Script
+
+Open `WordMakerByFolder.py` and modify the configuration section:
+
+```python
+# 1. Paste your GitHub folder URL
+TARGET_URL = "https://github.com/username/repository/tree/main/folder-name"
+
+# 2. (Optional) For private repos, add your Personal Access Token
+TOKEN = None  # or "ghp_your_token_here"
+
+# 3. Output directory (created automatically)
+OUTPUT_DIR = "Output_Reports"
+```
+
+#### Step 2: Run the Script
+
+```bash
+python WordMakerByFolder.py
+```
+
+#### Step 3: Find Your Documents
+
+All documents are saved in the `Output_Reports/` folder, each named after its source folder:
+```
+Output_Reports/
+├── FolderName1.docx
+├── FolderName2.docx
+├── FolderName3.docx
+└── ...
+```
+
+#### Example Output
+
+For a GitHub repo with this structure:
+```
+Labs/
+├── Lab Plan 1/
+│   ├── BubbleSort.cpp
+│   └── SelectionSort.cpp
+├── Lab Plan 2/
+│   ├── Q1_Swap.cpp
+│   └── Q2_Reverse.cpp
+```
+
+The script generates:
+```
+Output_Reports/
+├── Lab Plan 1.docx    (contains BubbleSort.cpp, SelectionSort.cpp)
+├── Lab Plan 2.docx    (contains Q1_Swap.cpp, Q2_Reverse.cpp)
+```
 
 ---
 
 ## 📋 Usage Examples
 
-### Example 1: Download C++ Assignment Files
+### Example 1: Download C++ Assignment Files (Single Document)
 ```python
 TARGET_URL = "https://github.com/professor/cpp-examples/tree/main/week5-pointers"
 agent = GitHubFolderAgent("Week5_Pointers.docx")
 agent.run(TARGET_URL, target_extensions=['.cpp', '.h', '.hpp'])
 ```
 
-### Example 2: Download Python Project
+### Example 2: Download Python Project (Single Document)
 ```python
 TARGET_URL = "https://github.com/student/ml-project/tree/main/src"
 agent = GitHubFolderAgent("ML_Project_Code.docx")
 agent.run(TARGET_URL, target_extensions=['.py'])
 ```
 
-### Example 3: Download Web Development Files
+### Example 3: Download Lab Assignments (Separate Documents per Lab)
+```python
+# Using WordMakerByFolder.py
+TARGET_URL = "https://github.com/student/dsa-labs/tree/main/Labs"
+agent = GitHubFolderAgent(output_directory="Lab_Reports")
+agent.run(TARGET_URL, target_extensions=['.cpp', '.h'])
+# Creates: Lab_Reports/Lab1.docx, Lab_Reports/Lab2.docx, etc.
+```
+
+### Example 4: Download Web Development Files
 ```python
 TARGET_URL = "https://github.com/webdev/portfolio/tree/main/src"
 agent = GitHubFolderAgent("Web_Project.docx")
 agent.run(TARGET_URL, target_extensions=['.html', '.css', '.js'])
 ```
 
-### Example 4: Download Java Assignment
+### Example 5: Download Java Assignment
 ```python
 TARGET_URL = "https://github.com/classmate/java-oop/tree/main/assignment2"
 agent = GitHubFolderAgent("OOP_Assignment2.docx")
@@ -375,6 +468,20 @@ self.add_shading(paragraph, "F5F5F5")  # Light gray background
 ## 📜 License
 
 This tool is free to use for educational purposes.
+
+---
+
+## 📁 Project Structure
+
+```
+Github to Docx/
+├── WordMaker.py           # Single document output
+├── WordMakerByFolder.py   # Separate documents per folder
+├── README.md              # This file
+├── .gitignore             # Git ignore rules
+├── .venv/                 # Virtual environment (created after setup)
+└── Output_Reports/        # Generated documents (created by WordMakerByFolder.py)
+```
 
 ---
 
