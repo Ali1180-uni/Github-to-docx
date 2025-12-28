@@ -1,0 +1,151 @@
+/* Hide default cursor on desktop */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  
+  a, button, input, select, textarea {
+    cursor: none;
+  }
+}
+
+/* Main cursor dot */
+.cursor-main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10001;
+  margin-left: -4px;
+  margin-top: -4px;
+  transition: transform 0.05s ease-out, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 40px rgba(59, 130, 246, 0.3);
+}
+
+.cursor-main.pointer {
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.7), 0 0 50px rgba(139, 92, 246, 0.4);
+}
+
+.cursor-main.hidden {
+  opacity: 0;
+  transform: scale(0);
+}
+
+/* Cursor outer ring */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(59, 130, 246, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  margin-left: -20px;
+  margin-top: -20px;
+  transition: transform 0.15s ease-out, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+}
+
+.cursor-ring.pointer {
+  width: 60px;
+  height: 60px;
+  margin-left: -30px;
+  margin-top: -30px;
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.cursor-ring.hidden {
+  opacity: 0;
+  transform: scale(0);
+}
+
+/* Trail effect */
+.cursor-trail {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: rgba(59, 130, 246, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  margin-left: -3px;
+  margin-top: -3px;
+  transition: opacity 0.3s ease;
+}
+
+/* Click ripple effect */
+.click-ripple {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(59, 130, 246, 0.8);
+  pointer-events: none;
+  z-index: 10002;
+  margin-left: -5px;
+  margin-top: -5px;
+  animation: rippleExpand 1s ease-out forwards;
+}
+
+@keyframes rippleExpand {
+  0% {
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    margin-top: -5px;
+    opacity: 1;
+  }
+  100% {
+    width: 150px;
+    height: 150px;
+    margin-left: -75px;
+    margin-top: -75px;
+    opacity: 0;
+  }
+}
+
+/* Bubble particles */
+.cursor-bubble {
+  position: fixed;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(96, 165, 250, 0.4) 50%,
+    rgba(59, 130, 246, 0.2) 100%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  animation: bubbleFloat 2s ease-out forwards;
+}
+
+@keyframes bubbleFloat {
+  0% {
+    opacity: 0.8;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.3);
+  }
+}
+
+/* Glow effect on interactive elements */
+@media (hover: hover) and (pointer: fine) {
+  button:hover, 
+  a:hover,
+  input:focus {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+  }
+}

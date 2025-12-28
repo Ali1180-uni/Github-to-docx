@@ -1,0 +1,2 @@
+cd "D:\Automation + Python\Github to Docx\github-docx-web\backend"; .\venv\Scripts\python.exe app.py
+cd "D:\Automation + Python\Github to Docx\github-docx-web\frontend"; npm start
